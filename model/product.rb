@@ -1,17 +1,10 @@
+require_relative 'product_item'
+
 class Product
-    attr_accessor :product_id, 
-        :description,
-        :quantity_on_hand, 
-        :reorder_threshold, 
-        :reorder_amount, 
-        :delivery_lead_time
+    attr_accessor :product_items
 
     # Initialize a product class
-	def initialize(product_id:, description:, quantity_on_hand:, reorder_threshold:, delivery_lead_time:)
-		@product_id = product_id
-		@description = description.to_i
-		@quantity_on_hand = quantity_on_hand.to_i
-		@reorder_threshold = reorder_threshold.to_i
-		@delivery_lead_time = delivery_lead_time.to_i
+	def initialize()
+		@product_items = []
 	end
 end
