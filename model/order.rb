@@ -2,7 +2,7 @@ class Order
     attr_accessor :order_id, 
         :status, 
         :date_created,
-        :items
+        :order_items
     
     # Initialize a order class
 	def initialize(order_id:, status:, date_created:)
@@ -10,6 +10,6 @@ class Order
 		@status = status
 		@date_created = date_created
 
-		@items = []
+		@order_items = []
 	end
 end
