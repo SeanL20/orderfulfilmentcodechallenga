@@ -1,11 +1,14 @@
 require_relative 'order'
 require_relative 'product'
+require "json"
 
 class Commands
-    def store_product_data(data)
-        product_data = data["product"]
+    def self.store_product_data(data, product)
+        file = File.open data
 
-        product = Product.new
+        file_data = JSON.load file
+        
+        product_data = file_data["products"]
 
         product_data.each do |data|
             ProductItem.new(
