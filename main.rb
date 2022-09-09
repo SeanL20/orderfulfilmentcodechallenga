@@ -5,8 +5,11 @@ def main
 
     product = Product.new
 
-    Commands.store_product_data(input_file, product)
-    puts product.inspect
+    command = Commands.new(product)
+
+    command.store_product_data(input_file)
+
+    command.process_order(input_file)
 end
 
 main
