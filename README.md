@@ -24,7 +24,7 @@ I would then create the command class where it would contain all the method to s
 
 In the command class, it would contain the methods:
     - read_file_data
-        - This method would read the data from the data.json or any other json files with the same format.
+        - This method would read the data from the data.json or any other json files with the same format. It would also abort the program if the file is not json or contain the keys "products" and "orders"
     - store_product_data
         - This method would store the product data from data.json file into the product and product_item class
     - process_order
@@ -38,7 +38,9 @@ In the command class, it would contain the methods:
     - check_stock_level
         - This method would also check if there is enough quantity of the product and would return false if there is not enough, it would also reorder if the quantity was below the reorder threshold to begin with.
     - output_orders
-        - This would output the order and the items to the command line.
+        - This method would output the order and the items to the command line.
+    - check_product_format
+        - This method would check for the products if the keys contain "productId", "description", "quantityOnHand", "reorderThreshold", "reorderAmount" and "deliveryLeadTime". It would abort the program if not. 
 
 The main file would call the command class to store the product date before processing the order, it would then output the array of unfulfilled ids to the command line.
 

@@ -12,6 +12,7 @@ class Commands
         product_data = file_data["products"]
 
         product_data.each do |data|
+            check_product_format(data)
             ProductItem.new(
                 product_id: data["productId"],
                 description: data["description"],
@@ -55,6 +56,10 @@ class Commands
         file = File.open file_path
 
         file_data = JSON.load file
+
+        data_keys = ["products", "orders"]
+        
+        abort "incorrect Data Format" if file_data.keys != data_keys
 
         return file_data
     end
@@ -110,5 +115,10 @@ class Commands
             end
             puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
         end
+    end
+
+    def check_product_format(product_data)
+        product_keys = ["productId", "description", "quantityOnHand", "reorderThreshold", "reorderAmount", "deliveryLeadTime"]
+        abort "incorrect Product Data Format" if product_data.keys != product_keys
     end
 end
