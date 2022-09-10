@@ -9,7 +9,9 @@ def main
 
     command.store_product_data(input_file)
 
-    command.process_order(input_file)
+    unfulfilled_orders_array = command.process_order(input_file)
+
+    puts "Unfulfilled orders ids: [#{unfulfilled_orders_array.join(", ") }]"
 end
 
 main

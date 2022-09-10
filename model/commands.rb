@@ -42,7 +42,10 @@ class Commands
                 unfulfilled_orders << order_items["orderId"]
             end
         end
-        puts "Unfulfilled orders ids: [#{unfulfilled_orders.join(", ") }]"
+        
+        output_orders(order_data)
+
+        return unfulfilled_orders
     end
 
     # reads the json file data and load it.
@@ -90,5 +93,22 @@ class Commands
         reorder_product if product_item.quantity_on_hand < product_item.reorder_threshold
 
         return order_item["quantity"].to_i > product_item.quantity_on_hand
+    end
+
+    def output_orders(order_data)
+        order_data.each do |order_items|
+            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+            puts "Order Id: #{order_items["OrderId"]}"
+            puts "status: #{order_items["status"]}"
+            puts "Date Createdd: #{order_items["dateCreated"]}"
+            order_items["items"].each do |item|
+                puts "========================================================================================================"
+                puts "Product Id: #{item["productId"]}"
+                puts "Quantity: #{item["quantity"]}"
+                puts "Cost Per Item: #{item["costPerItem"]}"
+                puts "========================================================================================================"
+            end
+            puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+        end
     end
 end
